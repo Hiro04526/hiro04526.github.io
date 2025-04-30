@@ -18,7 +18,7 @@ export default function Sidebar() {
 
           <div className="flex flex-col">
             <h1
-              className="text-white-2 text-fs-3 font-medium tracking-[-0.25px] mb-[10px]"
+              className="font-sm !text-xs text-white-2 text-fs-3 font-medium tracking-[-0.25px] mb-[10px]"
               title="Hiro Ishikawa"
             >
               Hiro Ishikawa

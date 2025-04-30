@@ -1,8 +1,6 @@
-import { useState } from "react";
-import Sidebar from './components/SideBar';
-import { MdDesignServices, MdWeb, MdPhoneIphone } from "react-icons/md";
-import "./index.pcss";
 import "./App.pcss";
+import Sidebar from './components/SideBar';
+import "./index.pcss";
 
 const TABS = ["About", "Resume", "Portfolio"];
 
