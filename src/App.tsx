@@ -1,8 +1,11 @@
-import "./App.pcss";
+import { useState } from "react";
 import Sidebar from './components/SideBar';
+import Navbar from './components/Navbar';
+import About from './components/About';
+import Portfolio from './components/Portfolio';
+import Resume from './components/Resume';
+import "./App.pcss";
 import "./index.pcss";
-
-const TABS = ["About", "Resume", "Portfolio"];
 
 {/*function Navbar({ activeTab, setActiveTab }: { activeTab: string, setActiveTab: (tab: string) => void }) {
   return (
@@ -132,15 +135,38 @@ const TABS = ["About", "Resume", "Portfolio"];
 }*/}
 
 function App() {
-  {/*const [activeTab, setActiveTab] = useState("About");*/}
+  const [activeSection, setActiveSection] = useState("About");
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case "About":
+        return <About />;
+      case "Resume":
+        return <Resume />;
+      case "Portfolio":
+        return <Portfolio />;
+      default:
+        return <About />;
+    }
+  };
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-[#101113]">
       <Sidebar />
-      {/*<div className="flex-1 flex flex-col">
-        <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <MainContent activeTab={activeTab} />
-      </div>*/}
+      <div className="flex-1">
+        <div className="max-w-[1000px] mx-auto relative">
+          <main className="bg-[#18191A] rounded-[20px] p-8 mt-16 mx-6 relative w-[800px] h-[600px]">
+            <h1 className="absolute top-0 left-0 p-4 text-3xl font-bold text-white z-10">
+              {activeSection}
+            </h1>
+            <Navbar 
+              activeSection={activeSection} 
+              onSectionChange={setActiveSection} 
+            />
+            <div className="mt-16">{renderContent()}</div>
+          </main>
+        </div>
+      </div>
     </div>
   );
 }
