@@ -2,54 +2,69 @@ import { useState } from "react";
 import IonIcon from "./IonIcon";
 
 export default function Sidebar() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className="bg-eerie-black-2 border border-jet rounded-[20px] p-[15px] shadow-shadow-1 z-[1]">
-      <aside
-        className={`overflow-hidden transition-[max-height] ease-in-out duration-500 mb-[15px] ${
-          isExpanded ? "max-h-[405px]" : "max-h-[112px]"
-        }`}
-      >
-        <div className="relative flex items-center justify-start gap-[15px]">
-          <figure className="rounded-[20px] bg-gradient-onyx overflow-hidden w-[80px] h-[80px]">
-            <img src="./assets/images/myimage.JPG" alt="Hiro Ishikawa" className="w-full h-full object-cover" />
-          </figure>
+    <aside
+      className={`bg-eerie-black-2 border border-jet rounded-[20px] p-[15px] shadow-shadow-1 z-[1] mb-[15px] overflow-hidden transition-all duration-300 ${
+        isActive ? "max-h-[405px]" : "max-h-[112px]"
+      }`}
+      data-sidebar
+    >
+      {/* Top Info */}
+      <div className="relative flex items-center gap-[15px]">
+        {/* Avatar */}
+        <figure className="rounded-[20px] bg-gradient-onyx overflow-hidden w-[100px] h-[100px]">
+          <img
+            src="./assets/images/myimage.JPG"
+            alt="Hiro Ishikawa"
+            width="100"
+            height="100"
+            className="rounded-[20px] bg-gradient-onyx overflow-hidden w-[100px] h-[100px]"
+          />
+        </figure>
 
-          <div className="flex flex-col">
-            <h1
-              className="font-sm !text-xs text-white-2 text-fs-3 font-medium tracking-[-0.25px] mb-[10px]"
-              title="Hiro Ishikawa"
-            >
-              Hiro Ishikawa
-            </h1>
-            <p className="text-white-1 bg-onyx text-fs-8 font-light w-max px-[12px] py-[3px] rounded-[8px]">
-              Web Developer
-            </p>
-          </div>
-
-          <button
-            onClick={() => setIsExpanded((prev) => !prev)}
-            className="absolute top-[-15px] right-[-15px] text-orange-yellow-crayola text-[13px] bg-border-gradient-onyx p-[10px] rounded-tr-[15px] shadow-custom-2 z-[1] relative"
+        {/* Name + Title */}
+        <div className="info-content">
+          <h1
+            className="text-white-2 text-[var(--fs-3)] font-[var(--fw-500)] tracking-[-0.25px] mb-[10px]"
+            title="Hiro Ishikawa"
           >
-            <span className="hidden">Show Contacts</span>
-            <div className="absolute inset-[1px] bg-gradient-jet rounded-tr-[15px] -z-[1]" />
-            <IonIcon name="chevron-down" />
-          </button>
+            Hiro Ishikawa
+          </h1>
+          <p className="text-white-1 text-[var(--fs-8)] font-[var(--fw-300)] bg-onyx px-[12px] py-[3px] rounded-[8px] w-max">
+            Web Developer
+          </p>
         </div>
 
-        <div
-          className={`transition-opacity duration-500 ease-in-out ${
-            isExpanded ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+        {/* Toggle Button */}
+        <button
+          className="absolute -top-[15px] -right-[15px] rounded-tr-[15px] rounded-br-[15px] text-[13px] text-orange-yellow-crayola bg-border-gradient-onyx px-[10px] py-[10px] shadow-shadow-2 z-[1] relative transition-all duration-300 hover:bg-gradient-yellow-1 focus:bg-gradient-yellow-1"
+          data-sidebar-btn
+          onClick={() => setIsActive(!isActive)}
         >
+          <span className="sr-only">Show Contacts</span>
+          <IonIcon name="chevron-down" />
+          <span className="absolute inset-[1px] rounded-inherit -z-[1] bg-bg-gradient-jet transition-all duration-300 group-hover:bg-gradient-yellow-2 group-focus:bg-gradient-yellow-2"></span>
+        </button>
+      </div>
+
+      {/* Expanded Content */}
+      <div
+        className={`transition-all duration-300 ${
+          isActive ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      >
+        <div className="sidebar-info_more p-2 text-white">
+          {/* Additional info here */}
+
           <div className="w-full h-px bg-jet my-4" /> {/* Separator */}
 
           <ul className="grid grid-cols-1 gap-4">
             {/* Email */}
             <li className="min-w-full flex items-center gap-4">
               <div className="relative bg-border-gradient-onyx w-[30px] h-[30px] rounded-[8px] flex items-center justify-center text-[16px] text-orange-yellow-crayola shadow-shadow-1 z-[1]">
-                <IonIcon name="mail-outline"></IonIcon>
+                <IonIcon name="mail-outline" />
               </div>
               <div className="w-[calc(100%-46px)] max-w-[calc(100%-46px)]">
                 <p className="text-light-gray-70 text-[var(--fs-8)] uppercase mb-[2px]">Email</p>
@@ -62,7 +77,7 @@ export default function Sidebar() {
             {/* Phone */}
             <li className="min-w-full flex items-center gap-4">
               <div className="relative bg-border-gradient-onyx w-[30px] h-[30px] rounded-[8px] flex items-center justify-center text-[16px] text-orange-yellow-crayola shadow-shadow-1 z-[1]">
-                <IonIcon name="phone-portrait-outline"></IonIcon>
+                <IonIcon name="phone-portrait-outline" />
               </div>
               <div className="w-[calc(100%-46px)] max-w-[calc(100%-46px)]">
                 <p className="text-light-gray-70 text-[var(--fs-8)] uppercase mb-[2px]">Phone</p>
@@ -75,18 +90,20 @@ export default function Sidebar() {
             {/* Birthday */}
             <li className="min-w-full flex items-center gap-4">
               <div className="relative bg-border-gradient-onyx w-[30px] h-[30px] rounded-[8px] flex items-center justify-center text-[16px] text-orange-yellow-crayola shadow-shadow-1 z-[1]">
-                <IonIcon name="calendar-outline"></IonIcon>
+                <IonIcon name="calendar-outline" />
               </div>
               <div className="w-[calc(100%-46px)] max-w-[calc(100%-46px)]">
                 <p className="text-light-gray-70 text-[var(--fs-8)] uppercase mb-[2px]">Birthday</p>
-                <time dateTime="2004-05-26" className="text-white-2 text-[var(--fs-7)]">May 26, 2004</time>
+                <time dateTime="2004-05-26" className="text-white-2 text-[var(--fs-7)]">
+                  May 26, 2004
+                </time>
               </div>
             </li>
 
             {/* Location */}
             <li className="min-w-full flex items-center gap-4">
               <div className="relative bg-border-gradient-onyx w-[30px] h-[30px] rounded-[8px] flex items-center justify-center text-[16px] text-orange-yellow-crayola shadow-shadow-1 z-[1]">
-                <IonIcon name="location-outline"></IonIcon>
+                <IonIcon name="location-outline" />
               </div>
               <div className="w-[calc(100%-46px)] max-w-[calc(100%-46px)]">
                 <p className="text-light-gray-70 text-[var(--fs-8)] uppercase mb-[2px]">Location</p>
@@ -99,6 +116,7 @@ export default function Sidebar() {
 
           <div className="w-full h-px bg-jet my-4" /> {/* Separator */}
 
+          {/* Social Links */}
           <ul className="flex justify-start items-center gap-[15px] pb-1 pl-[7px]">
             <li>
               <a
@@ -107,7 +125,7 @@ export default function Sidebar() {
                 rel="noopener noreferrer"
                 className="text-light-gray-70 text-[18px] hover:text-light-gray"
               >
-                <IonIcon name="logo-facebook"></IonIcon>
+                <IonIcon name="logo-facebook" />
               </a>
             </li>
             <li>
@@ -117,7 +135,7 @@ export default function Sidebar() {
                 rel="noopener noreferrer"
                 className="text-light-gray-70 text-[18px] hover:text-light-gray"
               >
-                <IonIcon name="logo-instagram"></IonIcon>
+                <IonIcon name="logo-instagram" />
               </a>
             </li>
             <li>
@@ -127,12 +145,12 @@ export default function Sidebar() {
                 rel="noopener noreferrer"
                 className="text-light-gray-70 text-[18px] hover:text-light-gray"
               >
-                <IonIcon name="logo-linkedin"></IonIcon>
+                <IonIcon name="logo-linkedin" />
               </a>
             </li>
           </ul>
         </div>
-      </aside>
-    </div>
+      </div>
+    </aside>
   );
 }
