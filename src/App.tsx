@@ -151,11 +151,11 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-[#101113]">
+    <div className="flex flex-col md:flex-row bg-[#101113] mx-auto bg-[#18191A] rounded-[20px]">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 ml-5">
         <div className="max-w-[1000px] mx-auto relative">
-          <main className="bg-[#18191A] rounded-[20px] p-8 mt-16 mx-6 relative w-[800px] h-[600px]">
+          <main className="bg-[#18191A] rounded-[20px] p-8 w-[700px] h-[590px]">
             <h1 className="absolute top-0 left-0 p-4 text-3xl font-bold text-white z-10">
               {activeSection}
             </h1>

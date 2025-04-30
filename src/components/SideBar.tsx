@@ -6,14 +6,13 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`bg-eerie-black-2 border border-jet rounded-[20px] p-[15px] shadow-shadow-1 z-[1] mb-[15px] overflow-hidden transition-all duration-300 ${
-        isActive ? "max-h-[405px]" : "max-h-[112px]"
+      className={`bg-[#18191A] rounded-[20px] p-[15px] shadow-md z-[1] overflow-hidden transition-all duration-300 ${
+        isActive ? "max-h-[600px]" : "max-h-[263px]"
       }`}
       data-sidebar
     >
       {/* Top Info */}
-      <div className="relative flex items-center gap-[15px]">
-        {/* Avatar */}
+      <div className="flex justify-center mt-2">
         <figure className="rounded-[20px] bg-gradient-onyx overflow-hidden w-[100px] h-[100px]">
           <img
             src="./assets/images/myimage.JPG"
@@ -23,7 +22,9 @@ export default function Sidebar() {
             className="rounded-[20px] bg-gradient-onyx overflow-hidden w-[100px] h-[100px]"
           />
         </figure>
+      </div>
 
+      <div className="flex justify-center pb-2">
         {/* Name + Title */}
         <div className="info-content">
           <h1
@@ -32,14 +33,16 @@ export default function Sidebar() {
           >
             Hiro Ishikawa
           </h1>
-          <p className="text-white-1 text-[var(--fs-8)] font-[var(--fw-300)] bg-onyx px-[12px] py-[3px] rounded-[8px] w-max">
+          <p className="text-white-1 text-[var(--fs-3)] font-[var(--fw-500)] tracking-[-0.25px]">
             Web Developer
           </p>
         </div>
+      </div>
 
-        {/* Toggle Button */}
+      {/* Toggle Button */}
+      <div className="flex justify-center">
         <button
-          className="absolute -top-[15px] -right-[15px] rounded-tr-[15px] rounded-br-[15px] text-[13px] text-orange-yellow-crayola bg-border-gradient-onyx px-[10px] py-[10px] shadow-shadow-2 z-[1] relative transition-all duration-300 hover:bg-gradient-yellow-1 focus:bg-gradient-yellow-1"
+          className="rounded-[20px] text-[13px] text-orange-yellow-crayola bg-border-gradient-onyx px-[10px] py-[10px] shadow-shadow-2 z-[1] relative transition-all duration-300 hover:bg-gradient-yellow-1 focus:bg-gradient-yellow-1"
           data-sidebar-btn
           onClick={() => setIsActive(!isActive)}
         >
@@ -62,8 +65,8 @@ export default function Sidebar() {
 
           <ul className="grid grid-cols-1 gap-4">
             {/* Email */}
-            <li className="min-w-full flex items-center gap-4">
-              <div className="relative bg-border-gradient-onyx w-[30px] h-[30px] rounded-[8px] flex items-center justify-center text-[16px] text-orange-yellow-crayola shadow-shadow-1 z-[1]">
+            <li className="min-w-full flex justify-center">
+              <div className="w-[30px] h-[30px] rounded-[8px] flex items-center justify-center text-[16px] text-orange-yellow-crayola shadow-shadow-1 z-[1]">
                 <IonIcon name="mail-outline" />
               </div>
               <div className="w-[calc(100%-46px)] max-w-[calc(100%-46px)]">

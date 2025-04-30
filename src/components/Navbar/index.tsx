@@ -7,7 +7,7 @@ const SECTIONS = ["About", "Resume", "Portfolio"];
 
 export default function Navbar({ activeSection, onSectionChange }: NavbarProps) {
   return (
-    <nav className="absolute top-0 right-0 flex gap-4 p-4 bg-[#18191A] rounded-[20px] rounded-bl-lg z-20 shadow-md">
+    <nav className="bg-[#18191A] rounded-[20px] rounded-bl-lg ml-80 z-20 shadow-md">
       {SECTIONS.map(section => (
         <button
           key={section}
